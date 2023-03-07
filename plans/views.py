@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View, ListView
 
 from .models import Plan
 
@@ -30,3 +30,14 @@ class HomePageView(View):
     #         )
     #         messages.success(request, "Your message was sent successfully")
     #         return redirect("products:index")
+
+
+class PlanListView(ListView):
+    model = Plan
+    template_name = "plans/plan_list.html"
+    context_object_name = "plan_list"
+    paginate_by = 6
+
+    def get_queryset(self):
+        plan_list = Plan.objects.filter(active=True)
+        return plan_list

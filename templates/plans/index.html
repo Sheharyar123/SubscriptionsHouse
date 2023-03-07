@@ -90,18 +90,11 @@
 						class="pricing_item {{ plan.background_type }} text-center top40 wow fadeIn"
 						data-wow-deeay="400ms"
 						>
-							{% if plan.title|title == "Get Hired" and plan.plan_type is None %}
-								<h3 class="font-light darkcolor"><b>{{ plan.title }}</b></h3>
-							{% elif plan.title|title == "Get Hired" %}
-								<h3 class="font-light darkcolor"><b>{{ plan.plan_type|title }}</b></h3>
-								<p class="bottom10">{{ plan.title }}</p>
-							{% else %}
-								<h3 class="font-light darkcolor"><b>{{ plan.title }}</b></h3>
-							{% endif %}
-								<div class="pricing_price darkcolor">
-								<span class="pricing_currency">
-								<b>${{ plan.price }}</b></span>/
-								{{ plan.valid_for }}
+							<h3 class="font-light darkcolor"><b>{{ plan.title }}</b></h3>
+                            <div class="pricing_price darkcolor">
+                            <span class="pricing_currency">
+                            <b>${{ plan.price }}</b></span>/
+                            {{ plan.valid_for }}
 							</div>
 							<p style="font-size: 30px;">{{ plan.description|safe|linebreaks }}</p>
 							<a class="btn_common btn_{{ plan.background_type }}" 
