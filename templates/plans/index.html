@@ -461,8 +461,7 @@
 		   </div>
 		   <div class="row">
 			<div class="col-md-8 offset-md-2 heading_space wow fadeInUp" data-wow-delay="400ms">
-				<form class="findus" id="contact-form" method="post">
-					{% csrf_token %}
+				<form class="findus" id="new-contact-form">
 					<div class="row">
 						<div class="col-md-12 col-sm-12">
 							<div id="result"></div>
@@ -507,4 +506,65 @@
 	</section>
 	 <!-- Contact Us -->
 
+
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const url = "{% url 'plans:index' %}";
+        const form = document.querySelector("#new-contact-form");
+
+        form.addEventListener("submit", function(e){
+            e.preventDefault();
+            const name = document.querySelector("#id_name").value;
+            const email = document.querySelector("#id_email").value;
+            const phone_no = document.querySelector("#id_phone_no").value;
+            const subject = document.querySelector("#id_subject").value;
+            const message = document.querySelector("#id_comment").value;
+            const csrftoken = getCookie('csrftoken');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    name: name,
+                    email: email,
+                    phone_no: phone_no,
+                    subject: subject,
+                    message: message,
+                    csrfmiddlewaretoken: csrftoken,
+                },
+
+                success: function(response) {
+					if (response.status == "success") {
+						swal({
+							title: "Your message was sent successfully",
+							text: "",
+							icon: "success",
+						});
+					}
+					else {
+						swal({
+							title: "Please fill all the fields!",
+							text: "",
+							icon: "info",
+						});
+					}
+					form.reset();	
+                }
+            })
+        })
+    </script>
 {% endblock content %}
