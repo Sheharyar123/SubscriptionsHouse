@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+
+{% block title %} Subscribe {% endblock title %}
+
+{% block content %}
+  <div class="background-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center wow fadeIn" data-wow-delay="300ms">
+            <h2 class="heading heading_space form-margin mb-0" style="color: #f1f3f5"><span>Subscription</span> Form <span
+                class="divider-center"></span>
+            </h2>
+        </div>
+      </div>
+      <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-10 col-lg-8 col-sm-12">
+          {% comment %} <h1 class="text-center form-title">Subscribe</h1> {% endcomment %}
+          <form method="POST" action="{% url 'subscriptions:subscription_form' plan.id %}" style="margin-bottom: 50px;">
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="form__field">
+                  <label class="mb-2">{{ field.label }}</label>
+                  {{ field }}
+              </div>
+              {% endfor %} 
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block">PROCEED TO PAYMENT</button>
+          </form>
+          {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                  <div class="text-center form-error">
+                      <strong>{{ error|escape }}</strong>
+                  </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <div class="text-center form-error">
+                  <strong>{{ error|escape }}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

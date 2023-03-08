@@ -1,6 +1,7 @@
 import uuid
 from ckeditor.fields import RichTextField
 from django.db import models
+from django.urls import reverse
 
 
 class Plan(models.Model):
@@ -35,3 +36,6 @@ class Plan(models.Model):
             return f"{self.plan_type} - {self.title}"
         else:
             return self.title
+
+    def get_absolute_url(self):
+        return reverse("plans:plan_detail", kwargs={"pk": self.pk})

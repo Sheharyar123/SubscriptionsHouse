@@ -98,13 +98,13 @@
 							</div>
 							<p style="font-size: 30px;">{{ plan.description|safe|linebreaks }}</p>
 							<a class="btn_common btn_{{ plan.background_type }}" 
-							   href="#"
+							   href="{% url 'subscriptions:subscription_form' plan.id %}"
 								>Choose Plan
 							</a>
 						</div>
 					</div>
 				{% endfor %}
-				<a href="#" class="btn_common btn_primary plans-btn" style="margin: 0 auto;">View All Plans</a>
+				<a href="{% url 'plans:plan_list' %}" class="btn_common btn_primary plans-btn" style="margin: 0 auto;">View All Plans</a>
 			</div>
 		</div>
 	</section>

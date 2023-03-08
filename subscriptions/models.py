@@ -13,7 +13,7 @@ class Subscription(models.Model):
     last_name = models.CharField(max_length=255)
     phone_no = models.CharField(max_length=100)
     email = models.CharField(max_length=255)
-    country = CountryField(blank_label="(select country)")
+    country = CountryField(blank_label="(Select country)")
     valid_from = models.DateTimeField(null=True, blank=True)
     valid_till = models.DateTimeField(null=True, blank=True)
     subscribed = models.BooleanField(default=False)

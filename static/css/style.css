@@ -4144,3 +4144,8 @@ footer .footer_panel p.address > i,
     text-align: center;
   }
 }
+
+/* Remove flag */
+.country-select-flag {
+  display: none !important;
+}
