@@ -2162,7 +2162,6 @@ ul.bullet-list li::before {
 .pricing_item,
 .pricing_item_detail {
   position: relative;
-  /* height: 580px; */
   height: auto;
   padding: 2.5rem 1rem;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
@@ -2175,10 +2174,6 @@ ul.bullet-list li::before {
   margin-bottom: 50px;
   background-color: white;
 }
-
-/* .pricing_item_detail {
-  height: auto;
-} */
 
 .pricing_item .pricing_price {
   padding: 15px 0 14px 0;
@@ -2208,12 +2203,6 @@ ul.bullet-list li::before {
   color: #a5a5a5;
   font-size: 1rem;
 }
-.pricing_item:hover,
-.pricing_item:hover h3,
-.pricing_item:hover .pricing_price {
-  background-color: #f8f9fa;
-  color: #0b0b0b !important;
-}
 
 .pricing_item.secondry:hover {
   background: #4fb8aa;
@@ -2241,32 +2230,7 @@ ul.bullet-list li::before {
   color: #384141;
 }
 
-/* @media (max-width: 500px) {
-  .pricing_item {
-    height: 520px;
-  }
-  .pricing_item_detail {
-    height: 580px;
-  }
-} */
-
-/* @media (min-width: 500px) and (max-width: 750px) {
-  .pricing_item_detail {
-    height: 610px;
-  }
-} */
-
 @media (min-width: 750px) and (max-width: 1000px) {
-  /* .pricing_item {
-    display: inline-block;
-    width: 100%;
-    height: 540px;
-  }
-
-  .pricing_item_detail {
-    height: 650px;
-  } */
-
   .subscription-text {
     font-size: 40px;
     text-align: center;

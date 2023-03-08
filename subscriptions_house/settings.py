@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "plans.apps.PlansConfig",
     "subscriptions.apps.SubscriptionsConfig",
+    "payments.apps.PaymentsConfig",
 ]
 
 MIDDLEWARE = [
@@ -134,5 +135,6 @@ EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
 # OWNER_EMAIL = env.str("OWNER_EMAIL")
 
 
-# PayPal Client ID
+# PayPal Settings
 PAYPAL_CLIENT_ID = env.str("PAYPAL_CLIENT_ID")
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"

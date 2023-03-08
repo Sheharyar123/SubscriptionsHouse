@@ -24,3 +24,7 @@ class Subscription(models.Model):
 
     def __str__(self):
         return f"{self.plan.title}'s Subscription"
+
+    @property
+    def name(self):
+        return f"{self.first_name} {self.last_name}"

@@ -23,7 +23,7 @@ class SubscriptionFormView(View):
             subscription = form.save(commit=False)
             subscription.plan = plan
             subscription.save()
-            request.session["subscription_id"] = str(plan.id)
+            request.session["subscription_id"] = str(subscription.id)
             return redirect(plan.get_absolute_url())
         else:
             context = {"form": form}

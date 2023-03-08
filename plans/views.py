@@ -10,6 +10,7 @@ class HomePageView(View):
     def get(self, request, *args, **kwargs):
         plan_list = Plan.objects.filter(active=True)[:6]
         context = {"plan_list": plan_list, "form": ContactForm}
+        # del request.session["subscription_id"]
         return render(request, "plans/index.html", context)
 
     def post(self, request, *args, **kwargs):
