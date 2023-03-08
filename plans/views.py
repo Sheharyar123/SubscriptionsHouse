@@ -1,6 +1,6 @@
 from django.http import JsonResponse
-from django.shortcuts import render
-from django.views.generic import View, ListView
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import View, ListView, DetailView
 from accounts.utils import send_email
 from .forms import ContactForm
 from .models import Plan
@@ -38,3 +38,13 @@ class PlanListView(ListView):
     def get_queryset(self):
         plan_list = Plan.objects.filter(active=True)
         return plan_list
+
+
+class PlanDetailView(DetailView):
+    model = Plan
+    template_name = "plans/plan_detail.html"
+    context_object_name = "plan"
+
+    def get_object(self):
+        queryset = get_object_or_404(Plan, id=self.kwargs.get("pk"), active=True)
+        return queryset

@@ -8,11 +8,13 @@ from .models import Subscription
 class SubscriptionFormView(View):
     def get(self, request, *args, **kwargs):
         plan = get_object_or_404(Plan, id=kwargs.get("pk"))
-        if request.session["subscription_id"] == plan.id:
+        subscription_id = request.session.get("subscription_id")
+        if subscription_id is not None and subscription_id == str(plan.id):
             return redirect(plan.get_absolute_url())
-        form = SubscriptionForm
-        context = {"form": form, "plan": plan}
-        return render(request, "subscriptions/subscription_form.html", context)
+        else:
+            form = SubscriptionForm
+            context = {"form": form, "plan": plan}
+            return render(request, "subscriptions/subscription_form.html", context)
 
     def post(self, request, *args, **kwargs):
         plan = get_object_or_404(Plan, id=kwargs.get("pk"))
@@ -21,8 +23,8 @@ class SubscriptionFormView(View):
             subscription = form.save(commit=False)
             subscription.plan = plan
             subscription.save()
-            request.session["subscription_id"] = plan.id
-            return redirect("subscriptions:subscription_form", pk=plan.id)
+            request.session["subscription_id"] = str(plan.id)
+            return redirect(plan.get_absolute_url())
         else:
             context = {"form": form}
             return render(request, "subscriptions/subscription_form.html", context)

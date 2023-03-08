@@ -59,6 +59,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "plans.context_processors.get_paypal_client_id",
             ],
         },
     },
@@ -131,3 +132,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
 # OWNER_EMAIL = env.str("OWNER_EMAIL")
+
+
+# PayPal Client ID
+PAYPAL_CLIENT_ID = env.str("PAYPAL_CLIENT_ID")

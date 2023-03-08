@@ -2209,6 +2209,12 @@ ul.bullet-list li::before {
   font-size: 1rem;
 }
 .pricing_item:hover,
+.pricing_item:hover h3,
+.pricing_item:hover .pricing_price {
+  background-color: #f8f9fa;
+  color: #0b0b0b !important;
+}
+
 .pricing_item.secondry:hover {
   background: #4fb8aa;
 }
