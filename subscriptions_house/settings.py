@@ -29,9 +29,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third Party
     "ckeditor",
+    "django_countries",
     # Local
     "accounts.apps.AccountsConfig",
     "plans.apps.PlansConfig",
+    "subscriptions.apps.SubscriptionsConfig",
 ]
 
 MIDDLEWARE = [
