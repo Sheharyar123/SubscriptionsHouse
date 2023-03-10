@@ -45,6 +45,8 @@
     const price = "{{ plan.price }}";
     const plan_id = "{{ plan.id }}";
     const url = "{% url 'payments:check_payment' %}";
+    const success_url = "{% url 'payments:payment_accepted' %}";
+    const failed_url = "{% url 'payments:payment_cancelled' %}";
     const csrftoken = getCookie('csrftoken');
     function initPayPalButton() {
       paypal.Buttons({
@@ -100,9 +102,11 @@
           },
           success: function(response) {
               if (response.status == "success") {
-                // window.location.href = "/";
-                console.log(response);    
-            }
+                window.location.href = success_url; 
+             }
+             else {
+               window.location.href = failed_url; 
+             }
           }
       }) 
   }

@@ -1,6 +1,9 @@
+from datetime import timedelta
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.utils import timezone
 from django.views.generic import View
+from accounts.utils import send_email
 from plans.models import Plan
 from subscriptions.models import Subscription
 from .models import Payment
@@ -25,7 +28,20 @@ class PaymentView(View):
                 payment.status = status
                 payment.amount = plan.price
                 payment.save()
+                subscription.subscribed = True
+                subscription.valid_from = timezone.now()
+                subscription.valid_till = timezone.now() + timedelta(
+                    subscription.get_days
+                )
+                subscription.save()
                 del request.session["subscription_id"]
+                context = {
+                    "subscription": subscription,
+                    "plan": plan,
+                }
+                mail_subject = "Thanks for subscribing"
+                mail_template = "plans/emails/confirm_subscription.html"
+                send_email(mail_subject, mail_template, context)
                 return JsonResponse(
                     {
                         "status": "success",
@@ -35,3 +51,15 @@ class PaymentView(View):
                 )
             except:
                 return redirect("subscriptions:subscription_form", id=plan_id)
+        else:
+            return redirect("plans:index")
+
+
+class PaymentAcceptedView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "payments/payment_accepted.html")
+
+
+class PaymentCancelledView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "payments/payment_cancelled.html")

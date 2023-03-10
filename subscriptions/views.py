@@ -9,8 +9,11 @@ class SubscriptionFormView(View):
     def get(self, request, *args, **kwargs):
         plan = get_object_or_404(Plan, id=kwargs.get("pk"))
         subscription_id = request.session.get("subscription_id")
-        if subscription_id is not None and subscription_id == str(plan.id):
-            return redirect(plan.get_absolute_url())
+        if subscription_id is not None:
+            subscription = get_object_or_404(
+                Subscription, id=subscription_id, plan=plan
+            )
+            return redirect(subscription.plan.get_absolute_url())
         else:
             form = SubscriptionForm
             context = {"form": form, "plan": plan}

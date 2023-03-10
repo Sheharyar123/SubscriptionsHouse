@@ -28,3 +28,14 @@ class Subscription(models.Model):
     @property
     def name(self):
         return f"{self.first_name} {self.last_name}"
+
+    @property
+    def get_days(self):
+        days = 0
+        if self.plan.valid_for == "month":
+            days = 31
+        elif self.plan.valid_for == "6months":
+            days = 31 * 6
+        elif self.plan.valid_for == "14days":
+            days = 14
+        return days
