@@ -6,7 +6,6 @@ from .models import Plan
 class PlanAdmin(admin.ModelAdmin):
     list_display = [
         "title",
-        "plan_type",
         "background_type",
         "price",
         "valid_for",
@@ -16,5 +15,7 @@ class PlanAdmin(admin.ModelAdmin):
         "active",
         "valid_for",
     ]
-    list_filter = ["plan_type", "price"]
-    search_fields = ["plan_type", "title", "price"]
+    list_filter = [
+        "price",
+    ]
+    search_fields = ["title", "price"]
