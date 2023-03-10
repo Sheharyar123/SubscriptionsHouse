@@ -7,14 +7,14 @@ from .models import Subscription
 
 class SubscriptionFormView(View):
     def get(self, request, *args, **kwargs):
-        plan = get_object_or_404(Plan, id=kwargs.get("pk"))
-        subscription_id = request.session.get("subscription_id")
-        if subscription_id is not None:
+        plan = get_object_or_404(Plan, pk=kwargs.get("pk"), active=True)
+        try:
+            subscription_id = request.session.get("subscription_id")
             subscription = get_object_or_404(
                 Subscription, id=subscription_id, plan=plan
             )
             return redirect(subscription.plan.get_absolute_url())
-        else:
+        except:
             form = SubscriptionForm
             context = {"form": form, "plan": plan}
             return render(request, "subscriptions/subscription_form.html", context)

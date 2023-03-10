@@ -4,7 +4,5 @@ from .views import SubscriptionFormView
 app_name = "subscriptions"
 
 urlpatterns = [
-    path(
-        "<uuid:pk>/subscribe/", SubscriptionFormView.as_view(), name="subscription_form"
-    ),
+    path("<uuid:pk>/", SubscriptionFormView.as_view(), name="subscription_form"),
 ]

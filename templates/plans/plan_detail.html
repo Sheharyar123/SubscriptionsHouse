@@ -45,6 +45,7 @@
     const price = "{{ plan.price }}";
     const plan_id = "{{ plan.id }}";
     const url = "{% url 'payments:check_payment' %}";
+    const success_url = "{% url 'plans:plan_list' %}";
     const csrftoken = getCookie('csrftoken');
     function initPayPalButton() {
       paypal.Buttons({
@@ -104,7 +105,10 @@
                   title: "Your payment was successful",
                   text: "Thank you for your payment. Kindly check your email inbox for more details",
                   icon: "success",
-                }); 
+                });
+                setTimeout(function() {
+                  window.location.href = success_url;
+                }, 10000);
              }
              else {
               swal({

@@ -38,6 +38,7 @@ class PaymentView(View):
                 context = {
                     "subscription": subscription,
                     "plan": plan,
+                    "email": subscription.email,
                 }
                 mail_subject = "Thanks for subscribing"
                 mail_template = "plans/emails/confirm_subscription.html"

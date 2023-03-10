@@ -9,3 +9,11 @@ def send_email(mail_subject, mail_template, context):
     message = render_to_string(mail_template, context)
     mail = EmailMessage(mail_subject, message, from_email, to=[to_email])
     mail.send()
+
+
+def send_confirmation_email(mail_subject, mail_template, context):
+    to_email = context.get("email")
+    from_email = settings.EMAIL_HOST_USER
+    message = render_to_string(mail_template, context)
+    mail = EmailMessage(mail_subject, message, from_email, to=[to_email])
+    mail.send()
