@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.utils import timezone
 from django.views.generic import View
-from accounts.utils import send_email
+from accounts.utils import send_confirmation_email
 from plans.models import Plan
 from subscriptions.models import Subscription
 from .models import Payment
@@ -42,7 +42,7 @@ class PaymentView(View):
                 }
                 mail_subject = "Thanks for subscribing"
                 mail_template = "plans/emails/confirm_subscription.html"
-                send_email(mail_subject, mail_template, context)
+                send_confirmation_email(mail_subject, mail_template, context)
                 return JsonResponse({"status": "success"})
             except:
                 return JsonResponse({"status": "failed"})

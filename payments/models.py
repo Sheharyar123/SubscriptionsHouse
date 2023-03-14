@@ -21,4 +21,4 @@ class Payment(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        return f"Payment from {self.subscription.name}"
+        return self.transaction_id
