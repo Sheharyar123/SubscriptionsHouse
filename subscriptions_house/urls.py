@@ -5,5 +5,5 @@ urlpatterns = [
     path("subscriptions-house-admin/", admin.site.urls),
     path("", include("plans.urls")),
     path("subscribe/", include("subscriptions.urls")),
-    path("", include("payments.urls")),
+    path("payment/", include("payments.urls")),
 ]

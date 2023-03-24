@@ -1,11 +1,8 @@
 import stripe
 from decimal import Decimal
-from datetime import timedelta
 from django.conf import settings
-from django.http import JsonResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.utils import timezone
 from django.views.generic import View
 from accounts.utils import send_confirmation_email
 from plans.models import Plan
@@ -45,7 +42,7 @@ class PaymentView(View):
             # subscription.valid_from = timezone.now()
             # subscription.valid_till = timezone.now() + timedelta(subscription.get_days)
             # subscription.save()
-            # del request.session["subscription_id"]
+            del request.session["subscription_id"]
             # context = {
             #     "subscription": subscription,
             #     "plan": plan,
@@ -86,9 +83,9 @@ class PaymentView(View):
 
 class PaymentCompletedView(View):
     def get(self, request, *args, **kwargs):
-        pass
+        return render(request, "payments/payment_completed.html")
 
 
 class PaymentCanceledView(View):
     def get(self, request, *args, **kwargs):
-        pass
+        return render(request, "payments/payment_canceled.html")
