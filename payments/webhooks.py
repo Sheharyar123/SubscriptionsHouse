@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from accounts.utils import send_confirmation_email
 from subscriptions.models import Subscription
 from .models import Payment
 
@@ -43,6 +44,14 @@ def stripe_webhook(request):
                 payment.status = session.payment_status
                 payment.amount = subscription.plan.price
                 payment.save()
+                context = {
+                    "subscription": subscription,
+                    "plan": subscription.plan,
+                    "email": subscription.email,
+                }
+                mail_subject = "Thanks for subscribing"
+                mail_template = "plans/emails/confirm_subscription.html"
+                send_confirmation_email(mail_subject, mail_template, context)
             except Subscription.DoesNotExist:
                 return HttpResponse(status=404)
     return HttpResponse(status=200)
