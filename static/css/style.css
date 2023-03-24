@@ -4119,3 +4119,18 @@ footer .footer_panel p.address > i,
 .country-select-flag {
   display: none !important;
 }
+
+/* Stripe Button */
+.stripe-btn {
+  width: 100%;
+  border: none;
+  background-color: #5469d4;
+  padding: 15px;
+  color: #f4f4f4;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.stripe-btn:hover {
+  transform: scale(0.98);
+}

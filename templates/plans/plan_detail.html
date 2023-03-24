@@ -19,14 +19,17 @@
                     {{ plan.valid_for }}
                 </div>
                 <p>{{ plan.description|safe|linebreaks }}</p>
-                <div id="paypal-button-container"></div>
+                <form method="POST" action="{% url 'payments:check_payment' %}" >
+                  {% csrf_token %}
+                  <input type="submit" value="Pay with Card" class="stripe-btn"/>
+                </form>
             </div>
           </div>
         </div>
     </div>
   </div>
 
-  <script>
+  {% comment %} <script>
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -119,7 +122,7 @@
              }
           }
       }) 
-  }
-  </script>
+    }
+  </script> {% endcomment %}
 
 {% endblock content %}
