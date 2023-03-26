@@ -23,14 +23,13 @@ class PaymentView(View):
             subscription = Subscription.objects.get(
                 id=subscription_id, subscribed=False
             )
-            del request.session["subscription_id"]
             session_data = {
                 "mode": "payment",
                 "client_reference_id": subscription_id,
                 "success_url": success_url,
                 "cancel_url": cancel_url,
                 "line_items": [],
-                "customer_email_collection": False,
+                "customer_email": subscription.email,
             }
 
             session_data["line_items"].append(

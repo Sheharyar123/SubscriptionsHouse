@@ -1447,8 +1447,8 @@ a {
     display: none;
   }
   .subscription-text {
-    font-size: 30px;
-    text-align: center;
+    font-size: 30px !important;
+    text-align: center !important;
   }
 }
 
@@ -4110,8 +4110,10 @@ footer .footer_panel p.address > i,
 }
 
 @media (min-width: 300px) and (max-width: 900px) {
-  .btn_common white_transparent {
-    text-align: center;
+  .btn_common {
+    /* text-align: center;
+    transition: none !important; */
+    display: none !important;
   }
 }
 

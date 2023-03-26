@@ -44,6 +44,7 @@ def stripe_webhook(request):
                 payment.status = session.payment_status
                 payment.amount = subscription.plan.price
                 payment.save()
+                del request.session["subscription_id"]
                 context = {
                     "subscription": subscription,
                     "plan": subscription.plan,
