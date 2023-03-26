@@ -30,6 +30,7 @@ class PaymentView(View):
                 "success_url": success_url,
                 "cancel_url": cancel_url,
                 "line_items": [],
+                "customer_email_collection": False,
             }
 
             session_data["line_items"].append(
