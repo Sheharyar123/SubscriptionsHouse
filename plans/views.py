@@ -20,6 +20,7 @@ class HomePageView(View):
                 "name": form.cleaned_data["name"],
                 "email": form.cleaned_data["email"],
                 "phone_no": form.cleaned_data["phone_no"],
+                "message": form.cleaned_data["message"],
             }
             mail_subject = f"You have received a new email from {context['name']}"
             mail_template = "plans/emails/contact_form_message.html"

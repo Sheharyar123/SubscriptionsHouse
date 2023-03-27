@@ -28,9 +28,9 @@ class ContactForm(forms.Form):
             attrs={"placeholder": "Subject", "class": "form-control"}
         ),
     )
-    comment = forms.CharField(
+    message = forms.CharField(
         required=False,
         widget=forms.Textarea(
-            attrs={"placeholder": "Comment", "class": "form-control"}
+            attrs={"placeholder": "Message", "class": "form-control"}
         ),
     )

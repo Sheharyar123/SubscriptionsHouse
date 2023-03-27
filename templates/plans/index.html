@@ -40,7 +40,7 @@
 				  data-splitin="none" data-splitout="none">
 				  <h1 class="text-capitalize font-xlight whitecolor font-fourty">Get All Premium</h1>
 			   </div> {% endcomment %}
-			   <div class="tp-caption tp-resizeme" data-x="['center','center','center','center']"
+			   {% comment %} <div class="tp-caption tp-resizeme" data-x="['center','center','center','center']"
 				  data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']"
 				  data-voffset="['-30','-30','-30','-30']" data-whitespace="nowrap" data-responsive_offset="on"
 				  data-width="['none','none','none','none']" data-type="text"
@@ -61,7 +61,7 @@
 					data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-mask_out="x:0;y:0;s:inherit;e:inherit;"
 					data-start="2000">
 					<a href="#aboutus" class="btn_common white_transparent">Learn More</a>
-				</div> 
+				</div>  {% endcomment %}
 			</li>
 		 </ul>
 		</div>
@@ -86,7 +86,7 @@
 			</div>
 			<div class="row">
 				{% for plan in plan_list %}
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div
 						class="pricing_item {{ plan.background_type }} text-center top40 wow fadeIn"
 						data-wow-deeay="400ms"
@@ -105,7 +105,7 @@
 						</div>
 					</div>
 				{% endfor %}
-				<a href="{% url 'plans:plan_list' %}" class="btn_common btn_primary plans-btn" style="margin: 0 auto;">View All Plans</a>
+				{% comment %} <a href="{% url 'plans:plan_list' %}" class="btn_common btn_primary plans-btn" style="margin: 0 auto;">View All Plans</a> {% endcomment %}
 			</div>
 		</div>
 	</section>
@@ -496,7 +496,7 @@
 						</div>
 						<div class="col-md-12">
 							{% comment %} <textarea placeholder="Comment" name="message" id="message"></textarea> {% endcomment %}
-							{{ form.comment }}
+							{{ form.message }}
 							<button class="btn_common btn_primary btn_full" id="btn_submit" type="submit">Submit</button>
 						</div>
 					</div>
@@ -533,7 +533,7 @@
             const email = document.querySelector("#id_email").value;
             const phone_no = document.querySelector("#id_phone_no").value;
             const subject = document.querySelector("#id_subject").value;
-            const message = document.querySelector("#id_comment").value;
+            const message = document.querySelector("#id_message").value;
             const csrftoken = getCookie('csrftoken');
 
             $.ajax({
