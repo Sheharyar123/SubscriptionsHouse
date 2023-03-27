@@ -231,7 +231,7 @@ p {
 
 /*heading Style*/
 .heading {
-  border-bottom: 1px solid #dadada;
+  /* border-bottom: 1px solid #dadada; */
   display: inline-block;
 }
 .heading .divider-left,
