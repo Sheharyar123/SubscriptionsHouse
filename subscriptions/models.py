@@ -38,4 +38,6 @@ class Subscription(models.Model):
             days = 31 * 6
         elif self.plan.valid_for == "14days":
             days = 14
+        elif self.plan.valid_for == "year":
+            days = 365
         return days
