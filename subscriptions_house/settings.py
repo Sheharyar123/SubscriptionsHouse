@@ -134,7 +134,7 @@ AUTH_USER_MODEL = "accounts.User"
 # # SMTP Settings
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[subscriptionshouse] "
 DEFAULT_FROM_EMAIL = env.str("EMAIL_HOST_USER")
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
@@ -164,7 +164,7 @@ PAYPAL_CLIENT_ID = env.str("PAYPAL_CLIENT_ID")
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
 
 # Stripe Settings
-STRIPE_PUBLISHABLE_KEY = env.str("STRIPE_PUBLISHABLE_KEY")
-STRIPE_SECRET_KEY = env.str("STRIPE_SECRET_KEY")
-STRIPE_API_VERSION = env.str("STRIPE_API_VERSION")
-STRIPE_WEBHOOK_SECRET = env.str("STRIPE_WEBHOOK_SECRET")
+# STRIPE_PUBLISHABLE_KEY = env.str("STRIPE_PUBLISHABLE_KEY")
+# STRIPE_SECRET_KEY = env.str("STRIPE_SECRET_KEY")
+# STRIPE_API_VERSION = env.str("STRIPE_API_VERSION")
+# STRIPE_WEBHOOK_SECRET = env.str("STRIPE_WEBHOOK_SECRET")
